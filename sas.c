@@ -287,7 +287,7 @@ void statistiquer() {
                 studentressir();
                 break;
             case 6:
-                return; // Quitter la fonction de statistiques
+                return;
             default:
                 printf("Choix invalide.\n");
         }
@@ -326,8 +326,9 @@ void rechercheetud() {
     char department[departmrntlong];
 
     while (1) {
-        printf("1. rechercher un etudiant par son nom\n");
-        printf("2. afficher la liste des etudiants inscrits dans un departement specifique\n");
+        printf("1.rechercher un etudiant par son nom\n");
+        printf("2.afficher la liste des etudiants inscrits dans un departement specifique\n");
+        printf("3.Quitter \n");
         printf("Choix: ");
         scanf("%d", &choiix);
         getchar();
@@ -345,6 +346,8 @@ void rechercheetud() {
                 department[strcspn(department, "\n")] = '\0';
                 listpardepartment(department);
                 break;
+            case 3:
+                return;
             default:
                 printf("Choix invalide. Veuillez reessayer.\n");
         }
@@ -450,7 +453,7 @@ void tristudent() {
                 trireussirdecroissant();
                 break;
             case 6:
-                return; // Quitter la fonction de tri
+                return;
             default:
                 printf("Choix invalide. Veuillez ressayer.\n");
         }
