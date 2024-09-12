@@ -35,25 +35,26 @@ void ajoutestudent() {
         printf("Depassement du nombre maximum d'etudiants.\n");
         return;
     }
-    student nouvestudent;
+    student nouvestudent; //variable de tyoe student
     printf("entrez le numero unique: ");
     scanf("%d", &nouvestudent.identite);
     printf("entrez le nom: ");
-    scanf("%s", nouvestudent.name);
+    scanf(" %[^\n]", nouvestudent.name);
     printf("entrez le prenom: ");
-    scanf("%s", nouvestudent.prenome);
+    scanf(" %[^\n]", nouvestudent.prenome);
     printf("entrez la date de naissance (dd/mm/yyyy): ");
-    scanf("%s", nouvestudent.date);
+    scanf(" %[^\n]", &nouvestudent.date.jour, &nouvestudent.date.mois, &nouvestudent.date.annee);
     printf("entrez le departement: ");
-    scanf("%s", nouvestudent.department);
+    scanf(" %[^\n]", nouvestudent.department);
     printf("entrez la note generale: ");
     scanf("%f", &nouvestudent.generalnote);
     studs[studentcompte++] = nouvestudent;
     printf("Étudiant ajouté avec succès.\n");
+    studentcompte++;
 };
 
 void remplirtableau() {
-    if (studentcompte >= maxstudent) {
+    if (studentcompte + 4>= maxstudent) {
         printf("Le tableau d'etudiants est deja plein.\n");
         return;
     }
@@ -66,15 +67,9 @@ void remplirtableau() {
         {5, "imran", "barada", {25, 12, 2000}, Depatement5, 11.0},
     };
 
-    int nombrestudent = sizeof(exemplestudent) / sizeof(exemplestudent[0]);
 
-    for (int i = 0; i < nombrestudent; i++) {
-        if (studentcompte < maxstudent) {
+    for (int i = 0; i < 4; i++) {
             studs[studentcompte++] = exemplestudent[i];
-        } else {
-            printf("Nombre maximum d'etudiants atteint.\n");
-            break;
-        }
     }
 
     printf("Tableau d'etudiants rempli avec des donnees d'exemple.\n");
@@ -118,12 +113,14 @@ void supprimerstudent(int identite) {
 
 
 void affichedeatails(int identite) {
+
     for (int i = 0; i < studentcompte; i++) {
         if (studs[i].identite == identite) {
+
             printf("Numero unique: %d\n", studs[i].identite);
             printf("Nom: %s\n", studs[i].name);
             printf("Prenom: %s\n", studs[i].prenome);
-            printf("Date de naissance: %s\n", studs[i].date);
+            printf("Date de naissance: %s\n", studs[i].date.jour, studs[i].date.mois, studs[i].date.annee);
             printf("Departement: %s\n", studs[i].department);
             printf("Note generale: %.2f\n", studs[i].generalnote);
             return;
@@ -461,7 +458,7 @@ void tristudent() {
 }
 
   void afficher(){
-        for(int i=0;i<4;i++){
+        for(int i=0;i<studentcompte-1;i++){
 
             printf("nom: %s\n" ,studs[i].name);
 
@@ -551,4 +548,5 @@ int main() {
 
 
     return 0;
-}
+};
+
